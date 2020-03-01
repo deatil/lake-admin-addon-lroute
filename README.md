@@ -11,4 +11,4 @@
 
 ## 版权 
 
-*  该系统所属版权归deatil(deatil@github.com)所有。
+*  该系统所属版权归deatil(deatil#github.com)所有。
