@@ -1,0 +1,296 @@
+{extend name="$lake_admin_layout"/}
+
+{block name="main"}
+<div class="layui-card">
+    <div class="layui-card-header layui-bg-cyan">编辑规则</div>
+    <div class="layui-card-body">
+        <form class="layui-form" method="post" lay-filter="form">			
+			
+            <div class="layui-form-item">
+                <label class="layui-form-label">所属模块&nbsp;<font color="red">*</font></label>
+                <div class="layui-input-inline w200">
+                    <input type="text" name="module" value="{$info.module}" lay-verify="required" autocomplete="off" placeholder="所属模块" class="layui-input" id="route_module">
+                </div>
+                <div class="layui-input-inline">
+                    <select lay-filter="route_module">
+                        <option value="" data-module=""></option>
+						{volist name="modules" id="module"}
+							<option value="{$module['module']}" {if $module.module==$info.module}selected{/if} data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
+						{/volist}
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">规则所属模块</div>
+            </div>
+			
+            <div class="layui-form-item">
+                <label class="layui-form-label">规则名称&nbsp;<font color="red">*</font></label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" value="{$info.name}" lay-verify="required" autocomplete="off" placeholder="规则名称" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">规则中文名称</div>
+            </div>
+
+            <div class="layui-form-item" id="rule_type">
+                <label class="layui-form-label">规则类型&nbsp;<font color="red">*</font></label>
+                <div class="layui-input-inline">
+                    <select name="type" lay-verify="required" lay-filter="type">
+                        <option></option>
+                        <option value="rule" {if $info['type'] == 'rule'}selected{/if}>路由规则[rule]</option>
+                        <option value="domain" {if $info['type'] == 'domain'}selected{/if}>域名路由[domain]</option>
+                        <option value="resource" {if $info['type'] == 'resource'}selected{/if}>资源路由[resource]</option>
+                        <option value="controller" {if $info['type'] == 'controller'}selected{/if}>控制器路由[controller]</option>
+                        <option value="view" {if $info['type'] == 'view'}selected{/if}>视图路由[view]</option>
+                        <option value="redirect"{if $info['type'] == 'redirect'}selected{/if}>重定向路由[redirect]</option>
+                        <option value="miss"{if $info['type'] == 'miss'}selected{/if}>未匹配路由[miss]</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_domain">
+                <label class="layui-form-label">子域名</label>
+                <div class="layui-input-inline w300">
+                    <textarea name="domain" placeholder="子域名" class="layui-textarea">{$info.domain}</textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">域名路由的子域名设置，格式：
+				<br/ >
+				key<br/ >
+				key2<br/ >
+				...
+				</div>
+			</div>
+            
+			<div class="layui-form-item layui-form-item-hide layui-hide" id="rule_rule">
+                <label class="layui-form-label">路由规则</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rule" value="{$info.rule}" autocomplete="off" placeholder="路由规则" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">请根据官方路由规则定义</div>
+            </div>
+            
+			<div class="layui-form-item layui-form-item-hide layui-hide" id="rule_route">
+                <label class="layui-form-label">路由地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="route" value="{$info.route}" autocomplete="off" placeholder="路由地址" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">请根据官方路由地址定义</div>
+            </div>
+            
+			<div class="layui-form-item layui-form-item-hide layui-hide" id="rule_template">
+                <label class="layui-form-label">路由模板地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="template" value="{$info.template}" autocomplete="off" placeholder="路由模板地址" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">请根据官方路由模板地址定义</div>
+            </div>
+
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_template_vars">
+                <label class="layui-form-label">模版变量</label>
+                <div class="layui-input-inline w300">
+					<dl class="fieldlist" data-template="template_vars_tpl" data-name="template_vars">
+						<dd>
+							<ins>字段</ins>
+							<ins>内容</ins>
+						</dd>
+						<dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
+
+						<textarea name="template_vars" class="layui-hide">{$info.template_vars}</textarea>
+					</dl>
+					<script id="template_vars_tpl" type="text/html">
+						<dd class="form-inline">
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
+							
+							<span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
+							<span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
+						</dd>
+					</script>
+                </div>
+                <div class="layui-form-mid layui-word-aux">路由模板规则的模版变量</div>
+			</div>
+            
+			<div class="layui-form-item layui-form-item-hide layui-hide" id="rule_redirect_status">
+                <label class="layui-form-label">跳转状态码</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="redirect_status" value="{$info.redirect_status}" autocomplete="off" placeholder="跳转状态码" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">请根据官方跳转状态码定义</div>
+            </div>
+
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_method">
+                <label class="layui-form-label">请求类型</label>
+                <div class="layui-input-inline">
+                    <select name="method">
+                        <option></option>
+                        <option value="GET" {if $info['method'] == 'GET'}selected{/if}>GET</option>
+                        <option value="POST" {if $info['method'] == 'POST'}selected{/if}>POST</option>
+                        <option value="PUT" {if $info['method'] == 'PUT'}selected{/if}>PUT</option>
+                        <option value="DELETE" {if $info['method'] == 'DELETE'}selected{/if}>DELETE</option>
+                        <option value="PATCH" {if $info['method'] == 'PATCH'}selected{/if}>PATCH</option>
+                        <option value="*"{if $info['method'] == '*'}selected{/if}>不限</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_option">
+                <label class="layui-form-label">路由参数</label>
+                <div class="layui-input-inline w300">
+					<dl class="fieldlist" data-template="optiontpl" data-name="option">
+						<dd>
+							<ins>字段</ins>
+							<ins>内容</ins>
+						</dd>
+						<dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
+
+						<textarea name="option" class="layui-hide">{$info.option}</textarea>
+					</dl>
+					<script id="optiontpl" type="text/html">
+						<dd class="form-inline">
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
+							
+							<span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
+							<span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
+						</dd>
+					</script>				
+                </div>
+                <div class="layui-form-mid layui-word-aux">规则的路由参数</div>
+			</div>
+
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_pattern">
+                <label class="layui-form-label">变量规则</label>
+                <div class="layui-input-inline w300">                
+					<dl class="fieldlist" data-template="patterntpl" data-name="pattern">
+						<dd>
+							<ins>字段</ins>
+							<ins>内容</ins>
+						</dd>
+						<dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
+
+						<textarea name="pattern" class="layui-hide">{$info.pattern}</textarea>
+					</dl>
+					<script id="patterntpl" type="text/html">
+						<dd class="form-inline">
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
+							<ins><input type="text" name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
+							
+							<span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
+							<span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
+						</dd>
+					</script>				
+				</div>
+                <div class="layui-form-mid layui-word-aux">规则的变量规则</div>
+			</div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述</label>
+                <div class="layui-input-inline w300">
+                    <textarea name="description" placeholder="规则的相关描述" class="layui-textarea">{$info.description}</textarea>
+                </div>
+            </div>
+            
+			<div class="layui-form-item">
+                <label class="layui-form-label">排序</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="sort" value="{$info.sort}" lay-verify="required" autocomplete="off" placeholder="排序" class="layui-input">
+                </div>
+            </div>
+			
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="status" value="1" title="正常" {if $info.status==1}checked{/if}>
+                    <input type="radio" name="status" value="0" title="禁止" {if $info.status==0}checked{/if}>
+                </div>
+            </div>
+			
+            <input type="hidden" value="{$info.id}" name="id" />
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="formSubmit">立即提交</button>
+                    <button class="layui-btn layui-btn-normal" type="button" onclick="javascript:history.back(-1);">返回</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+layui.use(['layer', 'form', 'fieldlist'], function() {
+    var layer = layui.layer,
+        form = layui.form,
+        fieldlist = layui.fieldlist,
+		$ = layui.$;
+	
+	// 多参数表单
+	fieldlist($('.layui-form'));
+
+    form.on('select(route_module)', function(data) {
+        $('#route_module').val($(data.elem).find("option:selected").attr("data-module"));
+    });
+
+	/**
+	 * 类型显示
+	 *
+	 * @create 2019-11-10
+	 * @author deatil
+	 */
+	function type_show(type) {
+		$('.layui-form-item-hide').addClass('layui-hide');
+		switch (type) {
+			case "rule":
+				$('#rule_rule').removeClass('layui-hide');
+				$('#rule_route').removeClass('layui-hide');
+				$('#rule_method').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				$('#rule_pattern').removeClass('layui-hide');
+				break;
+			case "resource":
+			case "controller":
+				$('#rule_rule').removeClass('layui-hide');
+				$('#rule_route').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				$('#rule_pattern').removeClass('layui-hide');
+				break;
+			case "domain":
+				$('#rule_rule').removeClass('layui-hide');
+				$('#rule_domain').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				$('#rule_pattern').removeClass('layui-hide');
+				break;
+			case "view":
+				$('#rule_rule').removeClass('layui-hide');
+				$('#rule_template').removeClass('layui-hide');
+				$('#rule_template_vars').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				$('#rule_pattern').removeClass('layui-hide');
+				break;
+			case "redirect":
+				$('#rule_rule').removeClass('layui-hide');
+				$('#rule_route').removeClass('layui-hide');
+				$('#rule_redirect_status').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				$('#rule_pattern').removeClass('layui-hide');
+				break;
+			case "miss":
+				$('#rule_route').removeClass('layui-hide');
+				$('#rule_method').removeClass('layui-hide');
+				$('#rule_option').removeClass('layui-hide');
+				break;
+		}
+	
+	}
+	
+	// 默认显示
+	var init_type = $('#rule_type').find("option:selected").val();
+	type_show(init_type);
+
+	// 选择更新显示
+    form.on('select(type)', function(data) {
+		var type = $(data.elem).find("option:selected").val();
+		type_show(type);
+	});
+});
+</script>
+{/block}

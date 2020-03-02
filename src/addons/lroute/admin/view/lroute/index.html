@@ -1,0 +1,83 @@
+{extend name="$lake_admin_layout"/}
+{block name="main"}
+<div class="layui-card">
+    <div class="layui-card-header layui-bg-cyan">路由规则</div>
+    <div class="layui-card-body">
+        <blockquote class="layui-elem-quote quoteBox">
+            <form class="layui-form lake-admin-search-from" method="get" lay-filter="lake-admin-search-from">
+                <div class="layui-inline">					
+                    <div class="layui-input-inline">
+                        <input type="text" name="module" class="layui-input lake-route-search-module" placeholder="请输入模块名称">
+                    </div>
+					
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" class="layui-input lake-route-search-name" placeholder="请输入规则名称">
+                    </div>
+					
+                    <a class="layui-btn lake-route-search-btn" data-type="search">搜索</a>
+                    <a class="layui-btn" href="{:url('index')}">查看全部</a>
+                </div>
+            </form>
+        </blockquote>
+		
+        <table class="layui-hide" id="table" lay-filter="table"></table>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/html" id="topToolbar">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-sm" href="{:url('add')}">添加规则</a>
+    </div>
+</script>
+<script type="text/html" id="actionTpl">
+    <a href='{:url("Lroute/edit")}?id={{ d.id }}' class="layui-btn layui-btn-xs">编辑</a>
+    <a href='{:url("Lroute/delete")}?id={{ d.id }}' class="layui-btn layui-btn-danger layui-btn-xs layui-tr-del">删除</a>
+</script>
+<script type="text/html" id="addTimeTpl">
+	{{ layui.util.toDateString(d.add_time * 1000) }}
+</script>
+<script type="text/html" id="statusTpl">
+    <input type="checkbox" name="status" data-href="{:url('setStatus')}?id={{d.id}}" value="{{d.id}}" lay-skin="switch" lay-text="正常|禁止" lay-filter="switchStatus" {{ d.status==1 ? 'checked' : '' }}>
+</script>
+
+<script>
+layui.use('table', function() {
+    var table = layui.table,
+        $ = layui.$,
+        form = layui.form;
+		
+    table.render({
+        elem: '#table',
+        toolbar: '#topToolbar',
+        url: '{:url("index")}',
+        cols: [
+            [
+                { field: 'id', width: 80, title: '规则ID' },
+                { field: 'module', width:130, title: '所属模块' },
+                { field: 'name', title: '规则名称' },
+                { field: 'sort', width: 80, title: '排序' },
+                { field: 'status', width: 100, title: '状态', templet: '#statusTpl', unresize: true },
+                { field: 'add_time',width:180, title: '创建时间', templet: '#addTimeTpl' },
+                { fixed: 'right', title: '操作', width: 115, templet: '#actionTpl' }
+            ]
+        ],
+		page: {},
+		limit: 20 //每页默认显示的数量
+    });
+	
+    $(".lake-route-search-btn").on("click", function() {
+        table.reload("table", {
+            page: {
+                curr: 1
+            },
+            where: {
+                module: $(".lake-route-search-module").val(),
+                name: $(".lake-route-search-name").val(),
+            }
+        })
+    });	
+});
+</script>
+{/block}
