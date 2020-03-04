@@ -2,6 +2,14 @@
     "name": "lake/lake-admin-addon-lroute",
     "description": "The Lake-admin-addon-lroute is for lake-admin Addon Package",
     "license": "Apache-2.0",
+    "type": "library",
+    "keywords": [
+        "lake",
+        "admin",
+        "lake-admin",
+        "addon",
+        "lroute"
+    ],
     "authors": [
         {
             "name": "deatil",
