@@ -20,8 +20,8 @@ class Uninstall
     {
         if (request()->param('clear') == 1) {
             // 删除表
-			$tablename = config('database.prefix') . 'lroute';
-			Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
+            $tablename = config('database.prefix') . 'lroute';
+            Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
         }
 
         return true;

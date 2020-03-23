@@ -13,11 +13,11 @@ use lake\module\controller\AdminBase;
 class LrouteBase extends AdminBase
 {
 
-	protected $module = 'lroute';
+    protected $module = 'lroute';
 
     protected function initialize()
     {
-		parent::initialize();
+        parent::initialize();
     }
 
 }

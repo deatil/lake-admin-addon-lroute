@@ -5,7 +5,7 @@
     <div class="layui-card-header layui-bg-cyan">添加规则</div>
     <div class="layui-card-body">
         <form class="layui-form" method="post">
-			
+            
             <div class="layui-form-item">
                 <label class="layui-form-label">所属模块&nbsp;<font color="red">*</font></label>
                 <div class="layui-input-inline w200">
@@ -14,14 +14,14 @@
                 <div class="layui-input-inline">
                     <select lay-filter="route_module">
                         <option data-module=""></option>
-						{volist name="modules" id="module"}
-							<option data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
-						{/volist}
+                        {volist name="modules" id="module"}
+                            <option data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
+                        {/volist}
                     </select>
                 </div>
                 <div class="layui-form-mid layui-word-aux">规则所属模块</div>
             </div>
-			
+            
             <div class="layui-form-item">
                 <label class="layui-form-label">规则名称&nbsp;<font color="red">*</font></label>
                 <div class="layui-input-inline">
@@ -37,14 +37,14 @@
                 </div>
             </div>
             
-			<div class="layui-form-item">
+            <div class="layui-form-item">
                 <label class="layui-form-label">排序</label>
                 <div class="layui-input-inline">
                     <input type="text" name="sort" value="100" lay-verify="required" autocomplete="off" placeholder="排序" class="layui-input">
                 </div>
             </div>
             
-			<div class="layui-form-item">
+            <div class="layui-form-item">
                 <label class="layui-form-label">状态</label>
                 <div class="layui-input-inline">
                     <input type="radio" name="status" value="1" title="正常" checked>
@@ -52,7 +52,7 @@
                 </div>
             </div>
             
-			<div class="layui-form-item">
+            <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit="" lay-filter="formSubmit">立即提交</button>
                     <button class="layui-btn layui-btn-normal" type="button" onclick="javascript:history.back(-1);">返回</button>
@@ -68,8 +68,8 @@
 layui.use(['layer', 'form'], function() {
     var layer = layui.layer,
         form = layui.form,
-		$ = layui.$;
-		
+        $ = layui.$;
+        
     form.on('select(route_module)', function(data) {
         $('#route_module').val($(data.elem).find("option:selected").attr("data-module"));
     });

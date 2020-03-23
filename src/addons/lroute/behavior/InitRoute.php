@@ -13,15 +13,15 @@ use app\lroute\service\Route as RouteService;
 class InitRoute
 {
 
-	/**
-	 * 设置路由
-	 *
-	 * @create 2019-11-10
-	 * @author deatil
-	 */
+    /**
+     * 设置路由
+     *
+     * @create 2019-11-10
+     * @author deatil
+     */
     public function run($params)
     {
-		(new RouteService())->setRoute();
+        (new RouteService())->setRoute();
     }
 
 }

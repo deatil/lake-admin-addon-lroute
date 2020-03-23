@@ -19,21 +19,21 @@ class install
      * @return boolean
      */
     public function end()
-    {		
-		$Module = new Module();
-		
-		// 清除旧数据
-		if (request()->param('clear') == 1) {
-			$tablename = config('database.prefix') . 'lroute';
-			Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
-		}
-		
-		// 安装数据库
-		$runSqlStatus = $Module->runSQL(__DIR__ . "/install.sql");
-		if (!$runSqlStatus) {
-			$this->error = $runSqlStatus->getError();
-		}
-		
+    {        
+        $Module = new Module();
+        
+        // 清除旧数据
+        if (request()->param('clear') == 1) {
+            $tablename = config('database.prefix') . 'lroute';
+            Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
+        }
+        
+        // 安装数据库
+        $runSqlStatus = $Module->runSQL(__DIR__ . "/install.sql");
+        if (!$runSqlStatus) {
+            $this->error = $runSqlStatus->getError();
+        }
+        
         return true;
     }
 

@@ -12,16 +12,16 @@ use think\Validate;
  */
 class Route extends Validate 
 {
-	protected $rule = [
-		'name'   => 'require',
-	];
-	
-	protected $message = [
-		'name.require' => '规则名称不能为空！',
-	];
-	
-	protected $scene = [
-		'add' => 'name',
-		'edit' => 'name'
-	];
+    protected $rule = [
+        'name'   => 'require',
+    ];
+    
+    protected $message = [
+        'name.require' => '规则名称不能为空！',
+    ];
+    
+    protected $scene = [
+        'add' => 'name',
+        'edit' => 'name'
+    ];
 }
