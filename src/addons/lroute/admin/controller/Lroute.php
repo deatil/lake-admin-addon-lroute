@@ -2,8 +2,9 @@
 
 namespace app\admin\controller;
 
-use think\Db;
+use think\facade\Db;
 use think\facade\Cache;
+use think\facade\View;
 
 use app\admin\module\Module as ModuleService;
 
@@ -57,7 +58,7 @@ class Lroute extends LrouteBase
             ];
             return json($result);
         } else {            
-            return $this->fetch();
+            return View::fetch();
         }
     }
 
@@ -71,7 +72,7 @@ class Lroute extends LrouteBase
     {
         if (request()->isPost()) {
             $data = request()->post();
-            $validate = $this->validate($data, 'lroute/Route');
+            $validate = $this->validate($data, '\\app\\lroute\\validate\\Route');
             if (true !== $validate) {
                 return $this->error($validate);
             }
@@ -91,11 +92,11 @@ class Lroute extends LrouteBase
             // 模块列表
             $modules = (new ModuleService())->getAll();
 
-            $this->assign([
+            View::assign([
                 'modules' => $modules,
             ]);
             
-            return $this->fetch();
+            return View::fetch();
         }
     }
 
@@ -110,7 +111,7 @@ class Lroute extends LrouteBase
         if (request()->isPost()) {
             $data = request()->post();
             
-            $validate = $this->validate($data, 'lroute/Route');
+            $validate = $this->validate($data, '\\app\\lroute\\validate\\Route');
             if (true !== $validate) {
                 return $this->error($validate);
             }
@@ -215,11 +216,11 @@ class Lroute extends LrouteBase
             // 模块列表
             $modules = (new ModuleService())->getAll();
 
-            $this->assign([
+            View::assign([
                 'modules' => $modules,
                 'info' => $info,
             ]);
-            return $this->fetch();
+            return View::fetch();
         }
     }
 
@@ -266,7 +267,9 @@ class Lroute extends LrouteBase
         $map['id'] = $id;
         $result = Db::name('lroute')
             ->where($map)
-            ->setField('status', $status);
+            ->where([
+                'status' => $status,
+            ]);
         if (false === $result) {
             return $this->error("设置失败！");
         }

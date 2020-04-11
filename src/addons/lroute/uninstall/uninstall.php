@@ -2,7 +2,7 @@
 
 namespace app\lroute\uninstall;
 
-use think\Db;
+use think\facade\Db;
 
 use app\admin\module\Module;
 
@@ -20,7 +20,8 @@ class Uninstall
     {
         if (request()->param('clear') == 1) {
             // 删除表
-            $tablename = config('database.prefix') . 'lroute';
+            $dbPrefix = app()->db->getConnection()->getConfig('prefix');
+            $tablename = $dbPrefix . 'lroute';
             Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
         }
 

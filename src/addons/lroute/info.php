@@ -3,12 +3,12 @@
 return array(
     'module' => 'lroute',
     'name' => '路由规则',
-    'introduce' => '自定义路由规则，当前版本只支持thinkphp5.1.*版本。',
+    'introduce' => '自定义路由规则，当前版本支持thinkphp6.0.*版本。',
     'author' => 'deatil',
     'authorsite' => 'github.com/deatil',
     'authoremail' => 'deatil@github.com',
-    'version' => '1.0.2',
-    'adaptation' => '1.0.2',
+    'version' => '2.0.2',
+    'adaptation' => '2.0.2',
     'sign' => '4d58c4c18ef962153142605f47ccbe56',
     
     // 模块地址

@@ -2,7 +2,7 @@
 
 namespace app\lroute\install;
 
-use think\Db;
+use think\facade\Db;
 
 use app\admin\module\Module;
 
@@ -12,7 +12,7 @@ use app\admin\module\Module;
  * @create 2019-11-9
  * @author deatil
  */
-class install
+class Install
 {
     /**
      * 安装完回调
@@ -24,7 +24,8 @@ class install
         
         // 清除旧数据
         if (request()->param('clear') == 1) {
-            $tablename = config('database.prefix') . 'lroute';
+            $dbPrefix = app()->db->getConnection()->getConfig('prefix');
+            $tablename = $dbPrefix . 'lroute';
             Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
         }
         

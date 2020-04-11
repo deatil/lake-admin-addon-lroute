@@ -2,7 +2,7 @@
 
 namespace app\lroute\service;
 
-use think\Db;
+use think\facade\Db;
 use think\facade\Cache;
 use think\facade\Route as ThinkRoute;
 
