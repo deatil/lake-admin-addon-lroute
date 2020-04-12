@@ -181,6 +181,31 @@
                 <div class="layui-form-mid layui-word-aux">规则的变量规则</div>
             </div>
 
+            <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_append">
+                <label class="layui-form-label">额外参数</label>
+                <div class="layui-input-inline w300">
+                    <dl class="fieldlist" data-template="appendtpl" data-name="append">
+                        <dd>
+                            <ins>字段</ins>
+                            <ins>内容</ins>
+                        </dd>
+                        <dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
+
+                        <textarea name="append" class="layui-hide">{$info.append}</textarea>
+                    </dl>
+                    <script id="appendtpl" type="text/html">
+                        <dd class="form-inline">
+                            <ins><input type="text" name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
+                            <ins><input type="text" name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
+                            
+                            <span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
+                            <span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
+                        </dd>
+                    </script>
+                </div>
+                <div class="layui-form-mid layui-word-aux">额外参数指的是不在URL里面的参数，隐式传入需要的操作中</div>
+            </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">描述</label>
                 <div class="layui-input-inline w300">
@@ -245,6 +270,7 @@ layui.use(['layer', 'form', 'fieldlist'], function() {
                 $('#rule_method').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
                 $('#rule_pattern').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
             case "resource":
             case "controller":
@@ -252,12 +278,14 @@ layui.use(['layer', 'form', 'fieldlist'], function() {
                 $('#rule_route').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
                 $('#rule_pattern').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
             case "domain":
                 $('#rule_rule').removeClass('layui-hide');
                 $('#rule_domain').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
                 $('#rule_pattern').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
             case "view":
                 $('#rule_rule').removeClass('layui-hide');
@@ -265,6 +293,7 @@ layui.use(['layer', 'form', 'fieldlist'], function() {
                 $('#rule_template_vars').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
                 $('#rule_pattern').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
             case "redirect":
                 $('#rule_rule').removeClass('layui-hide');
@@ -272,11 +301,13 @@ layui.use(['layer', 'form', 'fieldlist'], function() {
                 $('#rule_redirect_status').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
                 $('#rule_pattern').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
             case "miss":
                 $('#rule_route').removeClass('layui-hide');
                 $('#rule_method').removeClass('layui-hide');
                 $('#rule_option').removeClass('layui-hide');
+                $('#rule_append').removeClass('layui-hide');
                 break;
         }
     

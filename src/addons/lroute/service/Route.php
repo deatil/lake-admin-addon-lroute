@@ -61,28 +61,55 @@ class Route
                 } else {
                     $rule['pattern'] = [];
                 }
+                if (!empty($rule['append'])) {
+                    $rule['append'] = parse_fieldlist($rule['append']);
+                } else {
+                    $rule['append'] = [];
+                }
+                
+                $append = $rule['append'];
 
                 switch ($rule['type']) {
                     case "rule";
-                        ThinkRoute::rule($rule['rule'], $rule['route'], $rule['method'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::rule($rule['rule'], $rule['route'], $rule['method'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "resource";
-                        ThinkRoute::resource($rule['rule'], $rule['route'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::resource($rule['rule'], $rule['route'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "controller";
-                        ThinkRoute::controller($rule['rule'], $rule['route'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::rule($rule['rule'], $rule['route'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "domain";
-                        ThinkRoute::domain($rule['domain'], $rule['rule'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::domain($rule['domain'], $rule['rule'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "view";
-                        ThinkRoute::view($rule['rule'], $rule['template'], $rule['template_vars'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::view($rule['rule'], $rule['template'], $rule['template_vars'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "redirect";
-                        ThinkRoute::redirect($rule['rule'], $rule['route'], $rule['redirect_status'], $rule['option'], $rule['pattern']);
+                        ThinkRoute::redirect($rule['rule'], $rule['route'], $rule['redirect_status'])
+                            ->pattern($rule['pattern'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                     case "miss";
-                        ThinkRoute::miss($rule['route'], $rule['method'], $rule['option']);
+                        ThinkRoute::miss($rule['route'], $rule['method'])
+                            ->option($rule['option'])
+                            ->append($append);
                         break;
                 }
             }

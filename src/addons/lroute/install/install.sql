@@ -13,6 +13,7 @@ CREATE TABLE `pre__lroute` (
   `template` text COLLATE utf8mb4_unicode_ci COMMENT '路由模板地址',
   `template_vars` text CHARACTER SET utf8mb4 COMMENT '模版变量',
   `redirect_status` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '跳转状态码',
+  `append` text COLLATE utf8mb4_unicode_ci COMMENT '额外参数',
   `description` text COLLATE utf8mb4_unicode_ci COMMENT '规则描述',
   `sort` int(11) NOT NULL DEFAULT '100' COMMENT '排序',
   `status` tinyint(2) DEFAULT '1' COMMENT '状态',
