@@ -21,12 +21,12 @@ return array(
     // 嵌入点
     'hooks' => [
         'InitRoute' => [
-            'name' => 'app_init',
+            'name' => 'RouteLoaded',
             'class' => 'app\\lroute\\behavior\\InitRoute',
             'description' => 'Lroute公用初始化嵌入点',
             'listorder' => 50,
             'status' => 1,
-        ],    
+        ],
     ],
     
     // 菜单

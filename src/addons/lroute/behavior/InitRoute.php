@@ -19,7 +19,7 @@ class InitRoute
      * @create 2019-11-10
      * @author deatil
      */
-    public function run($params)
+    public function handle($params)
     {
         (new RouteService())->setRoute();
     }
