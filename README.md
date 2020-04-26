@@ -15,3 +15,10 @@
 ## 版权 
 
 *  该系统所属版权归deatil(deatil#github.com)所有。
+
+
+## 使用方法 
+
+*  正确安装了lake-admin后台
+*  composer require lake/lake-admin-addon-lroute，然后选择最新版本
+*  进入后台安装该模块
