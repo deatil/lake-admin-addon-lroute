@@ -42,27 +42,27 @@ class Route
         if (!empty($rules)) {
             foreach ($rules as $rule) {
                 if (!empty($rule['domain'])) {
-                    $rule['domain'] = parse_attr($rule['domain']);
+                    $rule['domain'] = lake_parse_attr($rule['domain']);
                 } else {
                     $rule['domain'] = [];
                 }
                 if (!empty($rule['template_vars'])) {
-                    $rule['template_vars'] = parse_fieldlist($rule['template_vars']);
+                    $rule['template_vars'] = lake_parse_fieldlist($rule['template_vars']);
                 } else {
                     $rule['template_vars'] = [];
                 }
                 if (!empty($rule['option'])) {
-                    $rule['option'] = parse_fieldlist($rule['option']);
+                    $rule['option'] = lake_parse_fieldlist($rule['option']);
                 } else {
                     $rule['option'] = [];
                 }
                 if (!empty($rule['pattern'])) {
-                    $rule['pattern'] = parse_fieldlist($rule['pattern']);
+                    $rule['pattern'] = lake_parse_fieldlist($rule['pattern']);
                 } else {
                     $rule['pattern'] = [];
                 }
                 if (!empty($rule['append'])) {
-                    $rule['append'] = parse_fieldlist($rule['append']);
+                    $rule['append'] = lake_parse_fieldlist($rule['append']);
                 } else {
                     $rule['append'] = [];
                 }
