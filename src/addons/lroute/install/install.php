@@ -24,7 +24,7 @@ class Install
         
         // 清除旧数据
         if (request()->param('clear') == 1) {
-            $dbPrefix = app()->db->getConnection()->getConfig('prefix');
+            $dbPrefix = app()->db->connect()->getConfig('prefix');
             $tablename = $dbPrefix . 'lroute';
             Db::execute("DROP TABLE IF EXISTS `{$tablename}`;");
         }
