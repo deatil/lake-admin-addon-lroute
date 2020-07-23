@@ -7,7 +7,7 @@ return array(
     'author' => 'deatil',
     'authorsite' => 'github.com/deatil',
     'authoremail' => 'deatil@github.com',
-    'version' => '2.0.2',
+    'version' => '2.0.5',
     'adaptation' => '2.0.2',
     'sign' => '4d58c4c18ef962153142605f47ccbe56',
     
