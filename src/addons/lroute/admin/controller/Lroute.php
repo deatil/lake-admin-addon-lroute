@@ -57,8 +57,8 @@ class Lroute extends LrouteBase
                 "data" => $data,
             ];
             return json($result);
-        } else {            
-            return View::fetch();
+        } else {
+            return $this->fetch();
         }
     }
 
@@ -92,11 +92,11 @@ class Lroute extends LrouteBase
             // 模块列表
             $modules = (new ModuleService())->getAll();
 
-            View::assign([
+            $this->assign([
                 'modules' => $modules,
             ]);
             
-            return View::fetch();
+            return $this->fetch();
         }
     }
 
@@ -216,11 +216,11 @@ class Lroute extends LrouteBase
             // 模块列表
             $modules = (new ModuleService())->getAll();
 
-            View::assign([
+            $this->assign([
                 'modules' => $modules,
                 'info' => $info,
             ]);
-            return View::fetch();
+            return $this->fetch();
         }
     }
 

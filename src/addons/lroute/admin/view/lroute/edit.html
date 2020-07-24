@@ -12,7 +12,7 @@
                     <input type="text" name="module" value="{$info.module}" lay-verify="required" autocomplete="off" placeholder="所属模块" class="layui-input" id="route_module">
                 </div>
                 <div class="layui-input-inline">
-                    <select lay-filter="route_module">
+                    <select lay-filter="route_module" class="module-select-list">
                         <option value="" data-module=""></option>
                         {volist name="modules" id="module"}
                             <option value="{$module['module']}" {if $module.module==$info.module}selected{/if} data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
@@ -250,6 +250,10 @@ layui.use(['layer', 'form', 'fieldlist'], function() {
     
     // 多参数表单
     fieldlist($('.layui-form'));
+    
+    var module = $('#route_module').val();
+    $(".module-select-list option[data-module='"+module+"']").attr("selected", true);
+    form.render('select');
 
     form.on('select(route_module)', function(data) {
         $('#route_module').val($(data.elem).find("option:selected").attr("data-module"));
