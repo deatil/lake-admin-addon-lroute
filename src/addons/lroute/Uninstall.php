@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lroute\uninstall;
+namespace app\lroute;
 
 use think\facade\Db;
 

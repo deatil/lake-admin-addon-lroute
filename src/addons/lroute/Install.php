@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lroute\install;
+namespace app\lroute;
 
 use think\facade\Db;
 
@@ -30,7 +30,7 @@ class Install
         }
         
         // 安装数据库
-        $runSqlStatus = $Module->runSQL(__DIR__ . "/install.sql");
+        $runSqlStatus = $Module->runSQL(__DIR__ . "/install/install.sql");
         if (!$runSqlStatus) {
             $this->error = $runSqlStatus->getError();
         }

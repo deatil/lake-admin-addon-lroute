@@ -5,7 +5,7 @@ return array(
     'name' => '路由规则',
     'introduce' => '自定义路由规则，当前版本支持thinkphp6.0.*版本。',
     'author' => 'deatil',
-    'authorsite' => 'github.com/deatil',
+    'authorsite' => 'http://github.com/deatil',
     'authoremail' => 'deatil@github.com',
     'version' => '2.0.5',
     'adaptation' => '2.0.2',
