@@ -2,7 +2,7 @@
 return [
     [
         "route" => "admin/Lroute/index",
-        "type" => 2,
+        "type" => 1,
         "is_menu" => 1,
         //名称
         "title" => "路由规则",
