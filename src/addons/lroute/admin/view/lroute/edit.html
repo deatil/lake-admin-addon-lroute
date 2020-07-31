@@ -4,7 +4,7 @@
 <div class="layui-card">
     <div class="layui-card-header layui-bg-cyan">编辑规则</div>
     <div class="layui-card-body">
-        <form class="layui-form" method="post" lay-filter="form">            
+        <form class="layui-form" method="post" lay-filter="form">
             
             <div class="layui-form-item">
                 <label class="layui-form-label">所属模块&nbsp;<font color="red">*</font></label>
@@ -134,28 +134,10 @@
             <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_option">
                 <label class="layui-form-label">路由参数</label>
                 <div class="layui-input-inline w300">
-                    <dl class="fieldlist" data-template="optiontpl" data-name="option">
-                        <dd>
-                            <ins>字段</ins>
-                            <ins>内容</ins>
-                        </dd>
-                        <dd>
-                            <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append">
-                                <i class="iconfont icon-add"></i>添加
-                            </a>
-                       </dd>
-
-                        <textarea name="option" class="layui-hide">{$info.option}</textarea>
-                    </dl>
-                    <script id="optiontpl" type="text/html">
-                        <dd class="form-inline">
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
-                            
-                            <span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
-                            <span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
-                        </dd>
-                    </script>
+                    <textarea name="option" 
+                        data-main="#route_main" 
+                        data-template="#route_tpl" 
+                        class="layui-form-fieldlist layui-hide">{$info.option}</textarea>
                     <div class="layui-form-mid layui-word-aux">规则的路由参数</div>
                 </div>
             </div>
@@ -163,24 +145,10 @@
             <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_pattern">
                 <label class="layui-form-label">变量规则</label>
                 <div class="layui-input-inline w300">
-                    <dl class="fieldlist" data-template="patterntpl" data-name="pattern">
-                        <dd>
-                            <ins>字段</ins>
-                            <ins>内容</ins>
-                        </dd>
-                        <dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
-
-                        <textarea name="pattern" class="layui-hide">{$info.pattern}</textarea>
-                    </dl>
-                    <script id="patterntpl" type="text/html">
-                        <dd class="form-inline">
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
-                            
-                            <span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
-                            <span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
-                        </dd>
-                    </script>
+                    <textarea name="pattern" 
+                        data-main="#route_main" 
+                        data-template="#route_tpl" 
+                        class="layui-form-fieldlist layui-hide">{$info.pattern}</textarea>
                     <div class="layui-form-mid layui-word-aux">规则的变量规则</div>
                 </div>
             </div>
@@ -188,24 +156,10 @@
             <div class="layui-form-item layui-form-item-hide layui-hide" id="rule_append">
                 <label class="layui-form-label">额外参数</label>
                 <div class="layui-input-inline w300">
-                    <dl class="fieldlist" data-template="appendtpl" data-name="append">
-                        <dd>
-                            <ins>字段</ins>
-                            <ins>内容</ins>
-                        </dd>
-                        <dd><a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append"><i class="iconfont icon-add"></i>添加</a></dd>
-
-                        <textarea name="append" class="layui-hide">{$info.append}</textarea>
-                    </dl>
-                    <script id="appendtpl" type="text/html">
-                        <dd class="form-inline">
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][key]" class="form-control" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段"/></ins>
-                            <ins><input type="text" data-name="{{d.name}}[{{d.index}}][value]" class="form-control" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容"/></ins>
-                            
-                            <span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
-                            <span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
-                        </dd>
-                    </script>
+                    <textarea name="append" 
+                        data-main="#route_main" 
+                        data-template="#route_tpl" 
+                        class="layui-form-fieldlist layui-hide">{$info.append}</textarea>
                     <div class="layui-form-mid layui-word-aux">额外参数指的是不在URL里面的参数，隐式传入需要的操作中</div>
                 </div>
             </div>
@@ -245,14 +199,34 @@
 {/block}
 
 {block name="script"}
+<script id="route_main" type="text/html">
+    <dl class="fieldlist">
+        <dd class="fieldlist-head">
+            <span>字段</span>
+            <span>内容</span>
+        </dd>
+        <dd class="fieldlist-btns">
+            <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-success btn-append">
+                <i class="iconfont icon-add"></i> 添加
+            </a>
+        </dd>
+    </dl>
+</script>
+<script id="route_tpl" type="text/html">
+    <dd class="fieldlist-item">
+        <ins><input type="text" data-name="{{d.name}}[{{d.index}}][key]" value="{{d.row.key?d.row.key:''}}" placeholder="填写字段" class="form-control"/></ins>
+        <ins><input type="text" data-name="{{d.name}}[{{d.index}}][value]" value="{{d.row.value?d.row.value:''}}" placeholder="填写内容" class="form-control"/></ins>
+        
+        <span class="layui-btn layui-btn-xs layui-btn-danger btn-remove"><i class="iconfont icon-close1"></i></span>
+        <span class="layui-btn layui-btn-xs layui-btn-primary btn-dragsort"><i class="iconfont icon-yidong"></i></span>
+    </dd>
+</script>
+
 <script>
 layui.use(['layer', 'form', 'fieldlist'], function() {
     var layer = layui.layer,
         form = layui.form,
         $ = layui.$;
-    
-    // 多参数表单
-    $('.layui-form').fieldlist();
     
     var module = $('#route_module').val();
     $(".module-select-list option[data-module='"+module+"']").attr("selected", true);

@@ -47,22 +47,22 @@ class Route
                     $rule['domain'] = [];
                 }
                 if (!empty($rule['template_vars'])) {
-                    $rule['template_vars'] = lake_parse_fieldlist($rule['template_vars']);
+                    $rule['template_vars'] = json_decode($rule['template_vars'], true);
                 } else {
                     $rule['template_vars'] = [];
                 }
                 if (!empty($rule['option'])) {
-                    $rule['option'] = lake_parse_fieldlist($rule['option']);
+                    $rule['option'] = json_decode($rule['option'], true);
                 } else {
                     $rule['option'] = [];
                 }
                 if (!empty($rule['pattern'])) {
-                    $rule['pattern'] = lake_parse_fieldlist($rule['pattern']);
+                    $rule['pattern'] = json_decode($rule['pattern'], true);
                 } else {
                     $rule['pattern'] = [];
                 }
                 if (!empty($rule['append'])) {
-                    $rule['append'] = lake_parse_fieldlist($rule['append']);
+                    $rule['append'] = json_decode($rule['append'], true);
                 } else {
                     $rule['append'] = [];
                 }
