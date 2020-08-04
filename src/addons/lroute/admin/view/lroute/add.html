@@ -8,45 +8,51 @@
             
             <div class="layui-form-item">
                 <label class="layui-form-label">所属模块&nbsp;<font color="red">*</font></label>
-                <div class="layui-input-inline w300">
-                    <input type="text" name="module" value="" lay-verify="required" autocomplete="off" placeholder="所属模块" class="layui-input" id="route_module">
+                <div class="layui-input-block">
+                    <div class="layui-inline w300">
+                        <input type="text" name="module" value="" lay-verify="required" autocomplete="off" placeholder="所属模块" class="layui-input" id="route_module">
+                    </div>
+                    <div class="layui-inline">
+                        <select lay-filter="route_module">
+                            <option data-module=""></option>
+                            {volist name="modules" id="module"}
+                                <option data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
+                            {/volist}
+                        </select>
+                    </div>
                 </div>
-                <div class="layui-input-inline">
-                    <select lay-filter="route_module">
-                        <option data-module=""></option>
-                        {volist name="modules" id="module"}
-                            <option data-module="{$module['module']}">{$module['name']}{if !empty($module['installtime'])}[已安装]{/if}</option>
-                        {/volist}
-                    </select>
+                <div class="layui-input-block">
+                    <div class="layui-form-mid layui-word-aux">规则所属模块</div>
                 </div>
-                <div class="layui-form-mid layui-word-aux">规则所属模块</div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">规则名称&nbsp;<font color="red">*</font></label>
-                <div class="layui-input-inline w300">
+                <div class="layui-input-block w300">
                     <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="规则名称" class="layui-input">
                 </div>
-                <div class="layui-form-mid layui-word-aux">规则中文名称</div>
+                <div class="layui-input-block w300">
+                    <div class="layui-form-mid layui-word-aux">规则中文名称</div>
+                </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">描述</label>
-                <div class="layui-input-inline w300">
+                <div class="layui-input-block w300">
                     <textarea name="description" placeholder="规则的相关描述" class="layui-textarea"></textarea>
                 </div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">排序</label>
-                <div class="layui-input-inline w300">
+                <div class="layui-input-block w300">
                     <input type="text" name="sort" value="100" lay-verify="required" autocomplete="off" placeholder="排序" class="layui-input">
                 </div>
             </div>
             
             <div class="layui-form-item">
                 <label class="layui-form-label">状态</label>
-                <div class="layui-input-inline">
+                <div class="layui-input-block w300">
                     <input type="radio" name="status" value="1" title="正常" checked>
                     <input type="radio" name="status" value="0" title="禁止">
                 </div>
