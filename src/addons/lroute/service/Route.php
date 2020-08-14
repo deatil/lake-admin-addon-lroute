@@ -72,42 +72,49 @@ class Route
                 switch ($rule['type']) {
                     case "rule";
                         ThinkRoute::rule($rule['rule'], $rule['route'], $rule['method'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "resource";
                         ThinkRoute::resource($rule['rule'], $rule['route'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "controller";
                         ThinkRoute::rule($rule['rule'], $rule['route'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "domain";
                         ThinkRoute::domain($rule['domain'], $rule['rule'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "view";
                         ThinkRoute::view($rule['rule'], $rule['template'], $rule['template_vars'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "redirect";
                         ThinkRoute::redirect($rule['rule'], $rule['route'], $rule['redirect_status'])
+                            ->name($rule['alias'])
                             ->pattern($rule['pattern'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
                     case "miss";
                         ThinkRoute::miss($rule['route'], $rule['method'])
+                            ->name($rule['alias'])
                             ->option($rule['option'])
                             ->append($append);
                         break;
