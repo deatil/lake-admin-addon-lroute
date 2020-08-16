@@ -18,8 +18,8 @@ return array(
     
     'setting' => [],
     
-    // 嵌入点
-    'hooks' => [
+    // 事件
+    'event' => [
         'InitRoute' => [
             'name' => 'RouteLoaded',
             'class' => 'app\\lroute\\behavior\\InitRoute',
