@@ -4,7 +4,7 @@ namespace app\lroute;
 
 use think\facade\Db;
 
-use app\admin\module\Module;
+use lake\admin\module\Module;
 
 /**
  * 安装脚本
