@@ -6,7 +6,7 @@ use think\facade\Db;
 use think\facade\Cache;
 use think\facade\View;
 
-use lake\admin\module\Module as ModuleService;
+use Lake\Module as ModuleService;
 
 /**
  * 规则
