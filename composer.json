@@ -19,7 +19,8 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "lake/lake-admin": "2.3.*"
     },
     "autoload": {
         "psr-4": {

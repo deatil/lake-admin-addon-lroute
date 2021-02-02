@@ -9,7 +9,6 @@ return array(
     'authoremail' => 'deatil@github.com',
     'version' => '2.0.5',
     'adaptation' => '2.0.2',
-    'sign' => '4d58c4c18ef962153142605f47ccbe56',
     
     // 模块地址
     'path' => __DIR__,
@@ -31,8 +30,4 @@ return array(
     
     // 菜单
     'menus' => include __DIR__ . '/menu.php',
-    
-    'tables' => [
-        'lroute',
-    ],
 );
