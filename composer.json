@@ -10,7 +10,7 @@
         "addon",
         "lroute"
     ],
-    "homepage": "https://github.com/deatil",
+    "homepage": "https://github.com/deatil/lake-admin-addon-lroute",
     "authors": [
         {
             "name": "deatil",
@@ -24,13 +24,13 @@
     },
     "autoload": {
         "psr-4": {
-            "app\\lroute\\": "src/addon/lroute"
+            "app\\lroute\\": ""
         }
     },
     "extra": {
         "think":{
             "services":[
-                "app\\lroute\\boot\\Service"
+                "app\\lroute\\Service"
             ]
         }
     }

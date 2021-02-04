@@ -1,6 +1,6 @@
 <?php
 
-namespace app\lroute\boot;
+namespace app\lroute;
 
 use think\Service as BaseService;
 
@@ -15,10 +15,9 @@ class Service extends BaseService
     public function boot()
     {
         $this->app->event->listen('lake_admin_module', function () {
-            $info_file = dirname(__DIR__)
-                . DIRECTORY_SEPARATOR . 'info.php';
-            if (file_exists($info_file)) {
-                $info = include $info_file;
+            $infoFile = __DIR__ . DIRECTORY_SEPARATOR . 'info.php';
+            if (file_exists($infoFile)) {
+                $info = include $infoFile;
             } else {
                 $info = [];
             }

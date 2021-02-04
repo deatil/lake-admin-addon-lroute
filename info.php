@@ -7,14 +7,11 @@ return array(
     'author' => 'deatil',
     'authorsite' => 'http://github.com/deatil',
     'authoremail' => 'deatil@github.com',
-    'version' => '2.0.5',
-    'adaptation' => '2.0.2',
+    'version' => '2.0.6',
+    'adaptation' => '2.3.27',
     
-    // 模块地址
     'path' => __DIR__,
-    
     'need_module' => [],
-    
     'setting' => [],
     
     // 事件
